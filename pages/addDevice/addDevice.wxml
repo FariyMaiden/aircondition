@@ -1,0 +1,74 @@
+<!--pages/addDevice/addDevice.wxml-->
+<view>
+  <view class='paramsItem'>
+    <text class='paramsName'>地址：</text>
+    <input data-type="address"  bindinput='paramsChange' class='paramsInput' value='{{addDevice.address}}'></input>
+  </view>
+
+  <view class='paramsItem' >
+    <text class='paramsName'>协议：</text>
+    <text class='paramsInput' bindtap='choseValue' data-type="protocol">
+    {{addDevice.protocol}}</text>
+  </view>
+
+  <!-- <view class='paramsItem'>
+    <text class='paramsName'>速率：</text>
+    <input data-type="speedRate"  bindinput='paramsChange' class='paramsInput'></input>
+  </view> -->
+  <view class='paramsItem'>
+    <text class='paramsName'>速率：</text>
+    <text class='paramsInput'bindtap='choseValue' data-type="speedRate">
+    {{addDevice.speedRate}}</text>
+  </view>
+
+  <view class='paramsItem'>
+    <text class='paramsName'>bit位：</text>
+    <text class='paramsInputT'bindtap='choseValue' data-type="bit">{{addDevice.bit}}</text>
+  </view>
+
+  <view class='paramsItem'>
+    <text class='paramsName'>奇偶位：</text>
+    <text class='paramsInputT'bindtap='choseValue' data-type="parity">{{addDevice.parity}}</text>
+  </view>
+
+  <view class='paramsItem'>
+    <text class='paramsName'>停止位：</text>
+    <text class='paramsInputT'bindtap='choseValue' data-type="stop">{{addDevice.stop}}</text>
+  </view>
+
+  <view class='paramsItem'>
+    <text class='paramsName'>方式：</text>
+    <text class='paramsInputT' bindtap='choseValue' data-type="way">{{addDevice.way}}</text>
+  </view>
+
+  <view class='paramsItem'>
+    <text class='paramsName'>设备类型：</text>
+    <text class='paramsInputT' bindtap='choseValue' data-type="deviceType">{{addDevice.deviceType}}</text>
+    
+  </view>
+
+
+  <view class='paramsItem'>
+    <text class='paramsName'>电流变比：</text>
+    <input data-type="ct"  bindinput='paramsChange' class='paramsInput' value='{{addDevice.ct}}'></input>
+  </view>
+
+  <!-- <view class='paramsItem'>
+    <text class='paramsName'>电流变比：</text>
+    <text class='paramsInput' bindtap='choseValue' data-type="ct">{{addDevice.ct}}</text>
+    
+  </view> -->
+
+  <!-- <view class='paramsItem'>
+    <text class='paramsName'>抄表周期(s)：</text>
+    <input data-type="readCycle"  bindinput='paramsChange' class='paramsInput'></input>
+  </view> -->
+
+  <view class='paramsItem'>
+    <text class='paramsName'>重试次数：</text>
+    <input data-type="retryCount"  bindinput='paramsChange' class='paramsInput' value="{{addDevice.retryCount}}"></input>
+  </view>
+
+  <button type='primary' bindtap='addDevice'>确定</button>
+
+</view>

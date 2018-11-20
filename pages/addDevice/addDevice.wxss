@@ -1,0 +1,42 @@
+button{
+  margin: 20rpx;
+  font-size: 32rpx;
+  color: white
+}
+.paramsItem{
+  margin: 20rpx 0;
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+}
+
+.paramsItem:first-of-type{
+  margin-top: 80rpx;
+}
+
+.paramsInput
+{
+  padding-left: 20rpx;
+  border: 1px solid black;
+  width: 70%;
+  height: 1.4rem;
+  /* 之前是1.4 */
+  line-height: 0.4rem;
+}
+
+.paramsName{
+  width: 140rpx;
+  text-align: right;
+}
+
+.paramsName{
+  width:180rpx;
+}
+/* 之前没有这个类，是pramsName,是为了改协议和速率的乱版而最后加个T */
+.paramsInputT{
+   padding-left: 20rpx;
+  border: 1px solid black;
+  width: 70%;
+  height: 1.4rem;
+  line-height: 1.4rem;
+}

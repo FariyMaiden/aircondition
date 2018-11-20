@@ -1,0 +1,164 @@
+<view>
+  <scroll-view class="scrollView" scroll-y bindscrolltolower='queryNext5Device'>
+    <text class="status">适配器状态：{{ status }}</text>  
+  <text class="status">是否搜索：{{ isSearch }}</text>
+   <!-- <view>  
+     <text class="status">接收到消息：{{ receiveData }}</text>   
+  </view>   -->
+  <button class="buttonInit" bindtap="foundLanya" type='primary'>初始化并搜索</button>
+  <button class="button" bindtap="closeBLEConnection" type='warn'>断开连接</button>
+
+
+
+
+    <!-- 输入数字搜索子设备 -->
+  <!-- <view>
+
+      <form bindsubmit='formSubmit'>
+          <input name='myvalue' value='' class='seach'></input>      
+          <button form-type='submit' type='primary'>点击搜索子设备</button>      
+      </form>  
+  
+  </view> -->
+  <!-- <view>
+
+      <button bindtap='clickTo'  type='primary'>查询子设备</button>
+      <view class='shakebox'  wx:if="{{inputData}}" >
+        <text>输入子设备序列号查询：</text>
+       <form bindsubmit='formSubmit'>
+       <input class='inputData' value='' name='shakeValue' placeholder='1~14' maxlength='2' type='number'></input>
+       <button form-type='submit'  type='primary' class='pp'> 确定</button>  
+       
+      </form>    
+      </view>
+  </view> -->
+
+
+
+
+  <!-- <button  class="refreshBtn" bindtap="refresh">刷新</button> -->
+
+
+   <view class='deviceList' wx:for="{{searchDeviceList}}" >
+    <view class='device'>
+      <text class="status">设备名称:{{item.name}}</text>  
+      <text class="status">设备ID:{{item.deviceId}}</text> 
+      <!-- <text class="status">信号:{{item.RSSI}}</text>  -->
+      <!-- <text class="status">mac:{{macs[index]}}</text>   -->
+      <text class="status">连接状态:{{connectedDeviceId == item.deviceId?"已连接":"未连接"}}</text>      
+
+      <button class="buttonInit" id="{{item.deviceId}}" data-index="{{index}}" bindtap="createBLEConnection"  type='warn'>连接发数据</button>  
+
+    </view>
+  </view> 
+
+  <view wx:if="{{showParams}}" >
+    <view class="title">系统参数</view>
+    <view class='upParams'>
+      <view wx:for="{{upParamsChineseName}}" class='upParamsItem'>
+        <text class='upParamsName'>{{item}}</text>
+        <!--不可输入  -->
+        <!-- <input wx:if="{{index==0 || index==1}}" value="{{upParams[upParamsEnglishName[index]]}}" disabled  class='upParamsInput noInput'></input> -->
+        <text wx:if="{{index==0 || index==1}}" class='upParamsInput noInput'> {{upParams[upParamsEnglishName[index]]}}</text>
+        <!--数字键盘  -->
+         <input wx:elif="{{index==8}}" value="{{upParams[upParamsEnglishName[index]]}}" type="number" data-type="{{upParamsEnglishName[index]}}"  bindinput='upParamsChange' class='upParamsInput'></input>
+        <!--字符键盘  -->
+        <input wx:else value="{{upParams[upParamsEnglishName[index]]}}" data-type="{{upParamsEnglishName[index]}}" maxlength='64' placeholder="最大输入长度64"  bindinput='upParamsChange' class='upParamsInput'></input>
+        
+      </view>
+      <button class="button1" bindtap='setUpParams' type='primary'>设定参数</button>
+    </view>
+
+    <view class="title">
+    <text>设备档案</text>
+    <!-- <button class='blueBtn' bindtap='toAddDevicePage'>添加</button> -->
+    </view>
+    <view class='downParams'>
+      <view wx:for="{{downParams}}" class='items'>
+        <view class="message">{{index+1}}/{{deviceCount}}</view>
+        <view class='downParamsItem'>
+          <text class='downParamsName'>地址：</text>
+          <input value="{{item.address}}" data-type="address" data-index="{{index}}" bindinput='downParamsChange' class='downParamsInput'></input>
+        </view>
+
+        <view class='downParamsItem' >
+          <text class='downParamsName'>协议：</text>
+          <text class='downParamsInput'bindtap='choseValue' data-index="{{index}}" data-type="protocol">{{item.protocol}}</text>
+        </view>
+
+        <!-- <view class='downParamsItem'>
+          <text class='downParamsName'>速率：</text>
+          <input value="{{item.speedRate}}" data-type="speedRate"  bindinput='downParamsChange' class='downParamsInput'></input>
+        </view> -->
+
+        <view class='downParamsItem'>
+          <text class='downParamsName'>速率：</text>
+          <text class='downParamsInput'bindtap='choseValue' data-index="{{index}}" data-type="speedRate">{{item.speedRate}}</text>
+        </view>
+
+        <view class='downParamsItem'>
+          <text class='downParamsName'>bit位：</text>
+          <text class='downParamsInput'bindtap='choseValue' data-index="{{index}}" data-type="bit">{{item.bit}}</text>
+        </view>
+
+        <view class='downParamsItem'>
+          <text class='downParamsName'>奇偶位：</text>
+          <text class='downParamsInput'bindtap='choseValue' data-index="{{index}}" data-type="parity">{{item.parity}}</text>
+        </view>
+
+        <view class='downParamsItem'>
+          <text class='downParamsName'>停止位：</text>
+          <text class='downParamsInput'bindtap='choseValue' data-index="{{index}}" data-type="stop">{{item.stop}}</text>
+        </view>
+
+        <view class='downParamsItem'>
+          <text class='downParamsName'>方式：</text>
+          <text class='downParamsInput' bindtap='choseValue' data-index="{{index}}" data-type="way">{{item.way}}</text>
+        </view>
+
+        <view class='downParamsItem'>
+          <text class='downParamsName'>设备类型：</text>
+          <text class='downParamsInput'bindtap='choseValue' data-index="{{index}}" data-type="deviceType">{{item.deviceType}}</text>
+        </view>
+
+         <view class='downParamsItem' 
+         wx:if="{{item.deviceType===deviceType[0]}}">
+          <text class='downParamsName'>电流变比：</text>
+          <input value="{{item.ct}}" data-type="ct" data-index="{{index}}" bindinput='downParamsChange' class='downParamsInput'></input>
+        </view>
+
+        <!-- <view class='downParamsItem'>
+          <text class='downParamsName'>抄表周期(s)：</text>
+          <input value="{{item.readCycle}}" data-type="readCycle"  bindinput='downParamsChange' class='downParamsInput'></input>
+        </view> -->
+
+        <view class='downParamsItem'>
+          <text class='downParamsName'>重试次数：</text>
+          <input value="{{item.retryCount}}" data-type="retryCount" data-index="{{index}}" bindinput='downParamsChange' class='downParamsInput' type='number'></input>
+        </view>
+
+        <view class='btnOperation'>
+          <button class='set' bindtap='setDeviceParams' data-index="{{index}}"  type='primary'>修改</button>
+          <button class='del' bindtap='deleteDevice' data-index="{{index}}"  type='warn'>删除</button>
+        </view>
+        
+
+      </view>
+        
+     
+       <!-- <button class='refreshBtn' bindtap='toAddDevicePage'>添加子设备</button>  -->
+    </view>
+    
+
+  </view>
+  
+  </scroll-view>
+   <view class='menus' wx:if="{{showParams}}">
+        <view bindtap='toAddDevicePage'>添加子设备</view>
+        <view  bindtap="refresh">刷新</view>
+   </view>
+  
+  
+  
+
+</view>

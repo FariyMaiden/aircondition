@@ -1,0 +1,174 @@
+/* pages/airCondition/airCondition.wxss */
+.status{  
+  display: block;  
+  line-height: 70rpx;  
+  margin: 0 20rpx;
+  word-wrap:break-word;  
+  font-size: 32rpx;
+
+}  
+
+button{
+  margin: 20rpx;
+  font-size: 32rpx;
+  color: white;
+  background-color:rgb(159, 171, 175); 
+}
+.buttonInit{
+  margin: 20rpx;
+  font-size: 32rpx;
+  color: white;
+  background-color:skyblue; 
+}
+.button1{
+  margin: 20rpx;
+  font-size: 32rpx;
+  color: white;
+  background-color:skyblue; 
+}
+
+.blueBtn{
+  background-color: blue;
+  width: 200rpx;
+}
+
+.upParams,
+.downParams{
+  margin: 5px;
+  border: 1px dashed #000;
+}
+
+.upParamsItem,
+.downParamsItem{
+  margin: 20rpx 0;
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+}
+
+.upParamsInput,
+.downParamsInput
+{
+  padding-left: 20rpx;
+  border: 1px solid black;
+  width: 70%;
+  height: 1.4rem;
+  line-height: 1.4rem;
+}
+
+ .noInput{
+  border: 1px solid #999999;
+  color: #999999;
+  /* word-wrap: break-word; */
+  word-break: break-all;
+} 
+
+.upParamsItem:first-child .noInput{
+  line-height: 0.7rem;
+}
+
+.upParamsName,
+.downParamsName{
+  width: 180rpx;
+  text-align: right;
+  /* display: inline-block; */
+}
+
+.items{
+  border-bottom: 1px solid #000;
+  padding: 30rpx 0;
+  position: relative
+}
+
+ .items:last-of-type{
+  border-bottom: none;
+  /* margin-bottom: 130rpx; */
+} 
+
+/* .downParamsName{
+  width:180rpx;
+} */
+
+.title{
+  margin-left: 20rpx;
+  margin-top: 60rpx;
+  font-size: 36rpx
+}
+
+.title{
+  display: flex;
+  align-items: center;
+   justify-content: space-between 
+}
+
+.refreshBtn{
+  background-color: blue;
+}
+
+.btnOperation{
+  display: flex;
+  justify-content: space-between
+}
+.btnOperation button{
+  width: 40%;
+}
+
+.menus{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between
+}
+.menus view{
+  width: 50%;
+   background-color: rgb(255, 249, 226); 
+  height: 120rpx;
+  line-height: 120rpx;
+  text-align: center;
+  color: black;
+}
+
+
+.scrollView{
+  position: absolute;
+  top: 0;
+  bottom: 120rpx;
+  left: 0;
+  right:0;
+}
+
+.message{
+  position: absolute;
+  top: 10rpx;
+  left: 10rpx;
+  color: blue
+}
+.inputDeviceId{
+ border: 1px solid black;
+ margin-left: 20rpx;
+ margin-right: 20rpx
+}
+.set{
+  background-color:skyblue; 
+}
+.del{
+   background-color:rgb(159, 171, 175); 
+}
+.inputData{
+  border: 1rpx solid black;
+  margin: 50rpx;
+}
+.shakebox{
+  background-color: rgb(182, 174, 174);
+  border: 1px solid white;
+  z-index: 100;
+  width: 600rpx;
+  height: 350rpx; 
+  margin: 75rpx;
+  border-radius:5% 
+}
+.pp{
+  margin: 200rpx;
+  margin-top:0rpx;
+}
